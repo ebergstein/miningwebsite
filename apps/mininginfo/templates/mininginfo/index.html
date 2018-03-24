@@ -8,25 +8,27 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type = "text/javascript">
 			$(document).ready(function() {
-				var html_str = "";
-				$.get("http://192.168.0.16:17790/api/miners", function(res){
-					minerlist = res.minerList;
-					for(var i = 0; i < minerlist.length(); i++){
-						html_str += "<tr>"
-						html_str += "<td><p>" + minerlist[i].name + "</p>";
-						html_str += "<p>" + minerlist[i].pool + "</p></td>";
-						html_str += "<td><p>" + minerlist[i].statusInfo.statusDisplay + "</p>";
-						html_str += "<p>" + minerlist[i].statusInfo.statusLine3 + "</p></td>";
-						html_str += "<td><p>" + minerlist[i].progressInfo.line1 + "</p>";
-						html_str += "<p>" + minerlist[i].progressInfo.line2 + "</p>";
-						html_str += "<p>" + minerlist[i].progressInfo.line3 + "</p></td>";
-						html_str += "<td><p>" + minerlist[i].speedInfo.logInterval + "s: " + minerlist[i].speedInfo.hashrate + "</p></td>";
-						html_str += "<td><p>" + minerlist[i].coinInfo.displayName + "</p>";
-						html_str += "<p>" + minerlist[i].coinInfo.revenuePerDay + "</p>";
-						html_str += "<p>" + minerlist[i].coinInfo.revenuePerMonth + "</p></td></tr>";
-					}
-				}
-				$("#mining").html(html_str);
+				setInterval(function(){
+					$.get("http://192.168.0.16:17790/api/miners", function(res){
+						minerlist = res.minerList;
+						var html_str = "";
+						for(var i = 0; i < minerlist.length(); i++){
+							html_str += "<tr>"
+							html_str += "<td><p>" + minerlist[i].name + "</p>";
+							html_str += "<p>" + minerlist[i].pool + "</p></td>";
+							html_str += "<td><p>" + minerlist[i].statusInfo.statusDisplay + "</p>";
+							html_str += "<p>" + minerlist[i].statusInfo.statusLine3 + "</p></td>";
+							html_str += "<td><p>" + minerlist[i].progressInfo.line1 + "</p>";
+							html_str += "<p>" + minerlist[i].progressInfo.line2 + "</p>";
+							html_str += "<p>" + minerlist[i].progressInfo.line3 + "</p></td>";
+							html_str += "<td><p>" + minerlist[i].speedInfo.logInterval + "s: " + minerlist[i].speedInfo.hashrate + "</p></td>";
+							html_str += "<td><p>" + minerlist[i].coinInfo.displayName + "</p>";
+							html_str += "<p>" + minerlist[i].coinInfo.revenuePerDay + "</p>";
+							html_str += "<p>" + minerlist[i].coinInfo.revenuePerMonth + "</p></td></tr>";
+							$("#mining").html(html_str);
+						}
+					})
+				}, 5000);
 			}
 	</script>
   </head>
