@@ -10,24 +10,27 @@
 			$(document).ready(function() {
 				setInterval(function(){
 					$.get("http://192.168.0.16:17790/api/miners", function(res){
-						var minerlist = res.minerList;
-						console.log(res);
+						var grouplist = res.groupList;
 						var html_str = "<table><thead><tr><th>Miners</th><th>Status</th><th>Progress</th><th>Speed</th><th>Coin</th></tr></thead><tbody>";
-						for(var i = 0; i < minerlist.length; i++){
-							html_str += "<tr>"
-							html_str += "<td>" + minerlist[i].name + "\n";
-							html_str += minerlist[i].pool + "</td>";
-							html_str += "<td>" + minerlist[i].statusInfo.statusDisplay + "\n";
-							html_str += minerlist[i].statusInfo.statusLine3 + "</td>";
-							html_str += "<td>" + minerlist[i].progressInfo.line1 + "\n";
-							html_str += minerlist[i].progressInfo.line2 + "\n";
-							html_str += minerlist[i].progressInfo.line3 + "</td>";
-							html_str += "<td>" + minerlist[i].speedInfo.logInterval + "s: " + minerlist[i].speedInfo.hashrate + "</td>";
-							html_str += "<td>" + minerlist[i].coinInfo.displayName + "\n";
-							html_str += minerlist[i].coinInfo.revenuePerDay + "\n";
-							html_str += minerlist[i].coinInfo.revenuePerMonth + "</td></tr></tbody></table>";
-							$("#information").html(html_str);
+						for(var j = 0; j < groupList.length; j++){
+							var minerlist = groupList[j].minerList;
+							for(var i = 0; i < minerlist.length; i++){
+								html_str += "<tr>"
+								html_str += "<td>" + minerlist[i].name + "\n";
+								html_str += minerlist[i].pool + "</td>";
+								html_str += "<td>" + minerlist[i].statusInfo.statusDisplay + "\n";
+								html_str += minerlist[i].statusInfo.statusLine3 + "</td>";
+								html_str += "<td>" + minerlist[i].progressInfo.line1 + "\n";
+								html_str += minerlist[i].progressInfo.line2 + "\n";
+								html_str += minerlist[i].progressInfo.line3 + "</td>";
+								html_str += "<td>" + minerlist[i].speedInfo.logInterval + "s: " + minerlist[i].speedInfo.hashrate + "</td>";
+								html_str += "<td>" + minerlist[i].coinInfo.displayName + "\n";
+								html_str += minerlist[i].coinInfo.revenuePerDay + "\n";
+								html_str += minerlist[i].coinInfo.revenuePerMonth + "</td></tr>";
+							}
 						}
+						html_str += "</tbody></table>";
+						$("#information").html(html_str);
 					}, "json");
 				}, 5000);
 			});
