@@ -11,7 +11,7 @@
 				setInterval(function(){
 					$.get("http://192.168.0.16:17790/api/miners", function(res){
 						minerlist = res.minerList;
-						var html_str = "";
+						var html_str = "<table><thead><tr><th>Miners</th><th>Status</th><th>Progress</th><th>Speed</th><th>Coin</th></tr></thead><tbody>";
 						for(var i = 0; i < minerlist.length(); i++){
 							html_str += "<tr>"
 							html_str += "<td>" + minerlist[i].name + "\n";
@@ -24,8 +24,8 @@
 							html_str += "<td>" + minerlist[i].speedInfo.logInterval + "s: " + minerlist[i].speedInfo.hashrate + "</td>";
 							html_str += "<td>" + minerlist[i].coinInfo.displayName + "\n";
 							html_str += minerlist[i].coinInfo.revenuePerDay + "\n";
-							html_str += minerlist[i].coinInfo.revenuePerMonth + "</td></tr>";
-							$("#mining").html(html_str);
+							html_str += minerlist[i].coinInfo.revenuePerMonth + "</td></tr></tbody></table>";
+							$("#information").html(html_str);
 						}
 					});
 				}, 5000);
@@ -49,8 +49,6 @@
 				</tr>
 			</thead>
 			<tbody>
-				<div id = "mining">
-				</div>
 			</tbody>
 		</table>
 	</div>
