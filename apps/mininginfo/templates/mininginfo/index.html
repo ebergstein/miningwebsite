@@ -12,8 +12,8 @@
 					$.get("http://192.168.0.16:17790/api/miners", function(res){
 						var grouplist = res.groupList;
 						var html_str = "<table><thead><tr><th>Miners</th><th>Status</th><th>Progress</th><th>Speed</th><th>Coin</th></tr></thead><tbody>";
-						for(var j = 0; j < groupList.length; j++){
-							var minerlist = groupList[j].minerList;
+						for(var j = 0; j < grouplist.length; j++){
+							var minerlist = grouplist[j].minerList;
 							for(var i = 0; i < minerlist.length; i++){
 								html_str += "<tr>"
 								html_str += "<td>" + minerlist[i].name + "\n";
