@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     {% load staticfiles %}
-    <link rel="stylesheet" href="{% static 'styles/mininginfo/mininginfo.css' %}"media="screen" title="no title"  charset="utf-8">
+    <link rel="stylesheet" href="{% static 'styles/mininginfo/mininginfo.css' %}" media="screen" title="no title"  charset="utf-8">
     <title>Mining Info</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type = "text/javascript">
@@ -14,17 +14,17 @@
 						var html_str = "";
 						for(var i = 0; i < minerlist.length(); i++){
 							html_str += "<tr>"
-							html_str += "<td><p>" + minerlist[i].name + "</p>";
-							html_str += "<p>" + minerlist[i].pool + "</p></td>";
-							html_str += "<td><p>" + minerlist[i].statusInfo.statusDisplay + "</p>";
-							html_str += "<p>" + minerlist[i].statusInfo.statusLine3 + "</p></td>";
-							html_str += "<td><p>" + minerlist[i].progressInfo.line1 + "</p>";
-							html_str += "<p>" + minerlist[i].progressInfo.line2 + "</p>";
-							html_str += "<p>" + minerlist[i].progressInfo.line3 + "</p></td>";
-							html_str += "<td><p>" + minerlist[i].speedInfo.logInterval + "s: " + minerlist[i].speedInfo.hashrate + "</p></td>";
-							html_str += "<td><p>" + minerlist[i].coinInfo.displayName + "</p>";
-							html_str += "<p>" + minerlist[i].coinInfo.revenuePerDay + "</p>";
-							html_str += "<p>" + minerlist[i].coinInfo.revenuePerMonth + "</p></td></tr>";
+							html_str += "<td>" + minerlist[i].name + "\n";
+							html_str += minerlist[i].pool + "</td>";
+							html_str += "<td>" + minerlist[i].statusInfo.statusDisplay + "\n";
+							html_str += minerlist[i].statusInfo.statusLine3 + "</td>";
+							html_str += "<td>" + minerlist[i].progressInfo.line1 + "\n";
+							html_str += minerlist[i].progressInfo.line2 + "\n";
+							html_str += minerlist[i].progressInfo.line3 + "</td>";
+							html_str += "<td>" + minerlist[i].speedInfo.logInterval + "s: " + minerlist[i].speedInfo.hashrate + "</td>";
+							html_str += "<td>" + minerlist[i].coinInfo.displayName + "\n";
+							html_str += minerlist[i].coinInfo.revenuePerDay + "\n";
+							html_str += minerlist[i].coinInfo.revenuePerMonth + "</td></tr>";
 							$("#mining").html(html_str);
 						}
 					})
@@ -34,7 +34,6 @@
   </head>
 
   <body>
-	<body>
 		<div class = "header">
 			<a href = "{% url 'mining:logout' %}">Logout</a>
 		</div>
