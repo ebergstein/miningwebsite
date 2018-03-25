@@ -11,7 +11,7 @@
 				setInterval(function(){
 					$.get("http://192.168.0.16:17790/api/miners", function(res){
 						var minerlist = res.minerList;
-						console.log(minerlist);
+						console.log(res);
 						var html_str = "<table><thead><tr><th>Miners</th><th>Status</th><th>Progress</th><th>Speed</th><th>Coin</th></tr></thead><tbody>";
 						for(var i = 0; i < minerlist.length; i++){
 							html_str += "<tr>"
