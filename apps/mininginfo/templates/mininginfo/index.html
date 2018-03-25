@@ -29,32 +29,32 @@
 						}
 					});
 				}, 5000);
-			}
+			});
 	</script>
   </head>
 
   <body>
-		<div class = "header">
-			<a href = "{% url 'mining:logout' %}">Logout</a>
-		</div>
-    	<div id="information">
-    		<table>
-				<thead>
-					<tr>
-						<th>Miners</th>
-						<th>Status</th>
-						<th>Progress</th>
-						<th>Speed</th>
-						<th>Coin</th>
-					</tr>
-				</thead>
-				<tbody>
-					<div id = "mining">
-					</div>
-				</tbody>
-			</table>
-        </div>
-        <div id = "errors">
-        </div>
+	<div class = "header">
+		<a href = "{% url 'mining:logout' %}">Logout</a>
+	</div>
+	<div id="information">
+		<table>
+			<thead>
+				<tr>
+					<th>Miners</th>
+					<th>Status</th>
+					<th>Progress</th>
+					<th>Speed</th>
+					<th>Coin</th>
+				</tr>
+			</thead>
+			<tbody>
+				<div id = "mining">
+				</div>
+			</tbody>
+		</table>
+	</div>
+	<div id = "errors">
+	</div>
   </body>
 </html>
