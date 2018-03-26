@@ -18,8 +18,9 @@
 			<form action="{% url 'login:register' %}" method="POST">
 				{% csrf_token %}
 				<h4>Register</h4>
-				<label>Username:<input type = "text" name = "username"></label>
 				<label>Email:<input type = "text" name = "email"></label>
+				<label>Address:<input type = "text" name = "address"></label>
+				<label>IP Address:<input type = "text" name = "ip"></label>
 				<label>Password:<input type = "password" name = "password"></label>
 				<label>Confirm Password:<input type = "password" name = "confirm"></label>
 				<input type = "submit" value = "Register">

@@ -10,12 +10,18 @@ def index(request):
 		user = User.objects.get(id = request.session['id'])
 	except:
 		return redirect(reverse('login:home'))
-	return render(request, 'mininginfo/index.html')
+	address = user.address
+	ip = user.ip
+	context = {
+		"address": address,
+		"ip": ip
+	}
+	return render(request, 'mininginfo/index.html', context)
     
 def logout(request):
 	try:
 		User.objects.get(id = request.session['id'])
 	except:
 		return redirect(reverse('login:home'))
-	del request.session['username']
+	del request.session['email']
 	return redirect(reverse('login:home'))
