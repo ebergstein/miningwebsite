@@ -10,7 +10,7 @@ def index(request):
 		user = User.objects.get(id = request.session['id'])
 	except:
 		return redirect(reverse('login:home'))
-	return render(request, 'mininginfo/index.html', context)
+	return render(request, 'mininginfo/index.html')
     
 def logout(request):
 	try:
