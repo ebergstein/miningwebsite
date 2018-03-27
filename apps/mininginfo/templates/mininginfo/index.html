@@ -8,13 +8,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type = "text/javascript">
     		function update(){
-    			var ip = "{{ip}}"
-    			$.get("http://" + ip + "/api/miners", function(res){
+    			$.get("http://192.168.0.16:17790/api/miners", function(res){
 					var grouplist = res.groupList;
-					var address = "{{address}}"
 					var html_str = "<table><thead><tr><th>Miners</th><th>Status</th><th>Progress</th><th>Speed</th><th>Coin</th></tr></thead><tbody>";
 					for(var j = 0; j < grouplist.length; j++){
-						if(address == grouplist[j].name){
 						var minerlist = grouplist[j].minerList;
 							for(var i = 0; i < minerlist.length; i++){
 								html_str += "<tr>"
@@ -30,7 +27,6 @@
 								html_str += minerlist[i].coinInfo.revenuePerDay + "\n";
 								html_str += minerlist[i].coinInfo.revenuePerMonth + "</td></tr>";
 							}
-						}
 					}
 					html_str += "</tbody></table>";
 					$("#information").html(html_str);

@@ -7,20 +7,17 @@ def index(request):
     return render(request, 'logreg/index.html')
 
 def register(request):
-    user = User.objects.regvalidator(request.POST['email'], request.POST['password'], request.POST['confirm'], 
-    request.POST['address'], request.POST['ip'])
+    user = User.objects.regvalidator(request.POST['email'], request.POST['password'], request.POST['confirm'])
     if user['errors'] != []:
         for errors in user['errors']:
             messages.add_message(request, messages.ERROR, errors)
         return redirect(reverse('login:home'))
     prehash = User.objects.bcryptor(request.POST['password'])
     pwhash = prehash['pwhash']
-    User.objects.create(email = request.POST['email'], pwhash = pwhash, 
-    address = request.POST['address'], ip = request.POST['ip'])
-    request.session['email'] = request.POST['email']
+    User.objects.create(email = request.POST['email'], pwhash = pwhash)
     check = User.objects.get(email = request.POST['email'])
     request.session['id'] = check.id
-    request.session['address'] = check.address 
+    request.session['email'] = check.email
     return redirect(reverse('mining:home'))
 
 def login(request):
@@ -31,5 +28,5 @@ def login(request):
         return redirect(reverse('login:home'))
     namer = User.objects.get(email = request.POST['email'])
     request.session['id'] = namer.id
-    request.session['address'] = namer.address
+    request.session['email'] = namer.email
     return redirect(reverse('mining:home'))

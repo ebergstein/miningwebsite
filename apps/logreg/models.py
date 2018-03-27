@@ -2,21 +2,13 @@ from __future__ import unicode_literals
 
 from django.db import models
 import bcrypt
-import socket
 import re
 
 EMAIL_REGEX = re.compile(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)")
 
 class RegistrationManager(models.Manager):
 
-	def ipcheck(ip):
-		try:
-			socket.inet_aton(ip)
-			return True
-		except:
-			return False
-			
-	def regvalidator(self, email, address, ip, password, confirm):
+	def regvalidator(self, email, password, confirm):
 		errors = []
 		if len(email) < 1:
 			errors.append("Your email cannot be blank.")
@@ -28,10 +20,6 @@ class RegistrationManager(models.Manager):
 			errors.append("Your password must be at least 8 characters long.")
 		if password != confirm:
 			errors.append("Your confirmation password must match your password.")
-		if not ipcheck(ip):
-			errors.append("Improper IP address.")
-		if len(address) < 1:
-			errors.append("Enter Your Address.")
 		return {'errors': errors}
 	def bcryptor(self, password):
 		hashword = bcrypt.hashpw(password.encode(), bcrypt.gensalt())
@@ -62,8 +50,6 @@ class RegistrationManager(models.Manager):
     	
 class User(models.Model):
 	email = models.EmailField()
-	address = models.CharField(max_length = 255)
-	ip = models.CharField(max_length = 255)
 	pwhash = models.CharField(max_length = 255)
 	created_at = models.DateTimeField(auto_now_add = True)
 	updated_at = models.DateTimeField(auto_now = True)
